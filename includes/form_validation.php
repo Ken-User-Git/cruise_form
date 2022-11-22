@@ -7,7 +7,7 @@ require_once "includes/error_handler.php";
 require_once "includes/form_data.php";
 
 // Variables/flags
-$isFormSubmit1ted = $_SERVER['REQUEST_METHOD'] === 'POST';
+$isFormSubmitted = $_SERVER['REQUEST_METHOD'] === 'POST';
 $showForm = true;
 
 
@@ -15,7 +15,7 @@ $showForm = true;
 $isFirstNameValid = false;
 $isLastNameValid = false;
 $isEmailValid = false;
-$isStateVaild = false;
+$isStateValid = false;
 $isZipValid = false;
 $isPhoneValid = false;
 $isPreferred_destination = false;
@@ -28,6 +28,7 @@ $form_lastname = null;
 $form_email = null;
 $form_city = null;
 $form_state = null;
+$form_address = null;
 $form_zip = null;
 $form_phone = null;
 $form_preferred_destination = null;
@@ -52,6 +53,7 @@ if ($isFormSubmitted){
     $form_email = $_POST['email'];
     $form_city = $_POST['city'];
     $form_state = $_POST['state'];
+    $form_address = $_POST['address'];
     $form_zip = $_POST['zip'];
     $form_phone = $_POST['phone'];
     $form_preferred_destination = $_POST['preferred-destination'];
@@ -65,7 +67,7 @@ if ($isFormSubmitted){
         $isLastNameValid = true;
     }
 
-    if (strlen($form_email) > 1) {
+    if (value($form_email) > 1) {
         $isEmailValid = true;
     }
 
@@ -77,11 +79,11 @@ if ($isFormSubmitted){
         $isZipValid = true;
     }
 
-    if (strlen($form_phone) > 1) {
+    if (value($form_phone) > 1) {
         $isPhoneValid = true;
     }
 
-    if (strlen($form_preferred_cruise_line) !== '') {
+    if (value($form_preferred_cruise_line) !== '') {
         $isPreferred_cruise_line = true;
     }
 

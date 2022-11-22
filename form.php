@@ -7,6 +7,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>Cruise Vacation Entry Form</title>
 
     <!-- Use Bootstrap CSS only -->
@@ -103,7 +104,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                                 // Use the associative array to hydrate the dropdown box
                                 foreach ($destinationsArray as $key => $value) {
                                     $selectedattribute = '';
-                                    if($key === $form_preferred_destination) $selectedattribute = 'selected';
+                                    if('$key' === $form_preferred_destination) $selectedattribute = 'selected';
                                     echo "<option value=$key $selectedattribute>$value</option>";
                                 }
                             ?>
@@ -120,7 +121,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                                 // Use the associative array to hydrate the dropdown box
                                 foreach ($cruiseArray as $key => $value) {
                                     $selectedattribute = '';
-                                    if($key === $form_preferred_cruise_line) $selectedattribute = 'selected';
+                                    if('$key' === $form_preferred_cruise_line) $selectedattribute = 'selected';
                                     echo "<option value=$key $selectedattribute>$value</option>";
                                 }
                             ?>
