@@ -115,7 +115,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                     <div class="col-12">
                         <label for="cruiseline" class="form-label">Preferred Cruise Line</label>
                         <?php if (!$isPreferred_cruise_line) echo '<span class= "requiredIndicator">*</span>'; ?>
-                        <select class="form-select <?php if (!$isPreferred_cruise_line && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="cruise-line" name="cruise-line" required>
+                        <select class="form-select <?php if (!$isPreferred_cruise_line && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-cruise-line" name="preferred-cruise-line" required>
                             <option value="">Please select your preferred cruise... </option>
                             <?php
                                 // Use the associative array to hydrate the dropdown box
