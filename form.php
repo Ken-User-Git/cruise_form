@@ -71,7 +71,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                     </div>
                     <div class="col-md-4">
                         <label for="state" class="form-label">State</label>
-                        <?php if (!$isStateVaild) echo '<span class= "requiredIndicator">*</span>'; ?>
+                        <?php if (!$isStateValid) echo '<span class="requiredIndicator">*</span>'; ?>
                         <select class="form-select <?php if(!$isStateVaild && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="state" name="state" required>
                             <option value="">Choose...</option>"
                             <?php
@@ -79,7 +79,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                                 
                                 foreach ($statesArray as $key => $value) {
                                     $selectedattribute = '';
-                                    if($key === $form_state) $selectedattribute = 'selected';
+                                    if('$key' === $form_state) $selectedattribute = 'selected';
                                     echo "<option value=$key $selectedattribute>$value</option>";
                                 }
                             ?>
@@ -96,7 +96,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                         </div>
                     </div>
                     <div class="col-12">
-                        <label for="state" class="form-label">Preferred destination</label>
+                        <label for="preferred-destination" class="form-label">Preferred destination</label>
                         <?php if (!$isPreferred_destination) echo '<span class= "requiredIndicator">*</span>'; ?>
                         <select class="form-select <?php if(!$isPreferred_destination && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-destination" name="preferred-destination" required>
                             <option value="">Please select...</option>
@@ -113,7 +113,7 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                             Please provide a valid destination.
                         </div>
                     <div class="col-12">
-                        <label for="cruiseline" class="form-label">Preferred Cruise Line</label>
+                        <label for="preferred-cruiseline" class="form-label">Preferred Cruise Line</label>
                         <?php if (!$isPreferred_cruise_line) echo '<span class= "requiredIndicator">*</span>'; ?>
                         <select class="form-select <?php if (!$isPreferred_cruise_line && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-cruise-line" name="preferred-cruise-line" required>
                             <option value="">Please select your preferred cruise... </option>
