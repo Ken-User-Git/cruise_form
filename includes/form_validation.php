@@ -31,7 +31,7 @@ $form_state = null;
 $form_address = null;
 $form_zip = null;
 $form_phone = null;
-$form_preferred_destination = null;
+$form_destination= null;
 $form_preferred_cruise_line = null;
 
 if ($isFormSubmitted){
@@ -56,7 +56,7 @@ if ($isFormSubmitted){
     $form_address = $_POST['address'];
     $form_zip = $_POST['zip'];
     $form_phone = $_POST['phone'];
-    $form_preferred_destination = $_POST['preferred-destination'];
+    $form_destination = $_POST['preferred-destination'];
     $form_preferred_cruise_line = $_POST['preferred-cruise-line'];
 
     if (strlen($form_firstname) > 1) {
@@ -71,10 +71,6 @@ if ($isFormSubmitted){
         $isEmailValid = true;
     }
 
-    if (($form_state) !== '') {
-        $isStateVaild = true;
-    }
-
     if (strlen($form_zip) > 1) {
         $isZipValid = true;
     }
@@ -83,11 +79,15 @@ if ($isFormSubmitted){
         $isPhoneValid = true;
     }
 
+    if (($form_state) !== '') {
+        $isStateVaild = true;
+    }
+
     if (($form_preferred_cruise_line) !== '') {
         $isPreferred_cruise_line = true;
     }
 
-    if (($form_preferred_destination) !== '') {
+    if (($form_destination) !== '') {
         $isPreferred_destination = true;
     }
 
@@ -96,15 +96,17 @@ if ($isFormSubmitted){
         $showForm = false; // Hide the form!
     }
 
+
+    
     // Insert the data into the database
     // INSERT INTO `registration`(`first_name`, `last_name`, `email`, `state`, `destination`) VALUES ('test1','Test2','test3','test4','test5')
     $sql = "INSERT INTO `registration`
-        (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`)
-        VALUES 
-        ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination')";
+    (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`, 'cruiseline_id')
+    VALUES 
+    ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination')";
 
     echo $sql;
-    
+
     queryDatabase($sql);
 
 

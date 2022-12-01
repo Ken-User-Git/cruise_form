@@ -31,6 +31,7 @@ $results = queryDatabase($sql);
         echo "<td>" . $row['email'] . "</td>";
         echo "<td>" . $row['state_name'] . "</td>";
         echo "<td>" . $row['destination_name'] . "</td>";
+        echo "<td>" . $row['cruiseline_name'] . "</td>";
         echo "</tr>";
     }
 ?>
