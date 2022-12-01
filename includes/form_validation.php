@@ -57,7 +57,7 @@ if ($isFormSubmitted){
     $form_zip = $_POST['zip'];
     $form_phone = $_POST['phone'];
     $form_destination = $_POST['preferred-destination'];
-    $form_preferred_cruise_line = $_POST['preferred-cruise-line'];
+    $form_cruise_line = $_POST['preferred-cruise-line'];
 
     if (strlen($form_firstname) > 1) {
         $isFirstNameValid = true;
@@ -83,7 +83,7 @@ if ($isFormSubmitted){
         $isStateVaild = true;
     }
 
-    if (($form_preferred_cruise_line) !== '') {
+    if (($form_cruise_line) !== '') {
         $isPreferred_cruise_line = true;
     }
 
@@ -103,7 +103,7 @@ if ($isFormSubmitted){
     $sql = "INSERT INTO `registration`
     (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`, 'cruiseline_id')
     VALUES 
-    ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination')";
+    ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination', $form_preferred_cruise_line)";
 
     echo $sql;
 
