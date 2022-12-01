@@ -67,11 +67,11 @@ if ($isFormSubmitted){
         $isLastNameValid = true;
     }
 
-    if (value($form_email) > 1) {
+    if (strlen($form_email) > 1) {
         $isEmailValid = true;
     }
 
-    if (strlen($form_state) !== '') {
+    if (($form_state) !== '') {
         $isStateVaild = true;
     }
 
@@ -79,15 +79,15 @@ if ($isFormSubmitted){
         $isZipValid = true;
     }
 
-    if (value($form_phone) > 1) {
+    if (strlen($form_phone) > 1) {
         $isPhoneValid = true;
     }
 
-    if (value($form_preferred_cruise_line) !== '') {
+    if (($form_preferred_cruise_line) !== '') {
         $isPreferred_cruise_line = true;
     }
 
-    if (strlen($form_preferred_destination) !== '') {
+    if (($form_preferred_destination) !== '') {
         $isPreferred_destination = true;
     }
 
@@ -96,7 +96,16 @@ if ($isFormSubmitted){
         $showForm = false; // Hide the form!
     }
 
+    // Insert the data into the database
+    // INSERT INTO `registration`(`first_name`, `last_name`, `email`, `state`, `destination`) VALUES ('test1','Test2','test3','test4','test5')
+    $sql = "INSERT INTO `registration`
+        (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`)
+        VALUES 
+        ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination')";
+
+    echo $sql;
     
+    queryDatabase($sql);
 
 
 }
