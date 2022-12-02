@@ -66,7 +66,6 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                     </div>
                     <div class="col-md-5">
                         <label for="zip" class="form-label">City <span class="text-muted">(Optional)</span></label>
-                        <?php if (!$isZipValid) echo '<span class= "requiredIndicator">*</span>'; ?>
                         <input type="text" class="form-control <?php if(!$isZipValid && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="city" name="city" placeholder=" " value="<?=$form_zip?>" required>
                     </div>
                     <div class="col-md-4">
@@ -97,14 +96,13 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                     </div>
                     <div class="col-12">
                         <label for="preferred-destination" class="form-label">Preferred destination</label>
-                        <?php if (!$isPreferred_destination) echo '<span class= "requiredIndicator">*</span>'; ?>
                         <select class="form-select <?php if(!$isPreferred_destination && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-destination" name="preferred-destination" required>
                             <option value="">Please select...</option>
                             <?php
                                 // Use the associative array to hydrate the dropdown box
                                 foreach ($destinationsArray as $key => $value) {
                                     $selectedattribute = '';
-                                    if('$key' === $form_preferred_destination) $selectedattribute = 'selected';
+                                    if('$key' === $form_destination) $selectedattribute = 'selected';
                                     echo "<option value=$key $selectedattribute>$value</option>";
                                 }
                             ?>
@@ -114,14 +112,13 @@ require_once "includes/form_validation.php"; // Include the validation file for 
                         </div>
                     <div class="col-12">
                         <label for="preferred-cruiseline" class="form-label">Preferred Cruise Line</label>
-                        <?php if (!$isPreferred_cruise_line) echo '<span class= "requiredIndicator">*</span>'; ?>
-                        <select class="form-select <?php if (!$isPreferred_cruise_line && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-cruise-line" name="preferred-cruise-line" required>
+                        <select class="form-select <?php if(!$isPreferred_destination && $isFormSubmitted) echo 'requiredHighlight'; ?>" id="preferred-cruiseline" name="preferred-cruiseline" required>
                             <option value="">Please select your preferred cruise... </option>
                             <?php
                                 // Use the associative array to hydrate the dropdown box
-                                foreach ($cruiseArray as $key => $value) {
+                                foreach ($cruiselinesArray  as $key => $value) {
                                     $selectedattribute = '';
-                                    if('$key' === $form_preferred_cruise_line) $selectedattribute = 'selected';
+                                    if('$key' === $form_cruiseline) $selectedattribute = 'selected';
                                     echo "<option value=$key $selectedattribute>$value</option>";
                                 }
                             ?>

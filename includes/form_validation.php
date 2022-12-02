@@ -16,11 +16,6 @@ $isFirstNameValid = false;
 $isLastNameValid = false;
 $isEmailValid = false;
 $isStateValid = false;
-$isZipValid = false;
-$isPhoneValid = false;
-$isPreferred_destination = false;
-$isPreferred_cruise_line = false;
-
 
 
 $form_firstname = null;
@@ -32,7 +27,7 @@ $form_address = null;
 $form_zip = null;
 $form_phone = null;
 $form_destination= null;
-$form_preferred_cruise_line = null;
+$form_cruiseline = null;
 
 if ($isFormSubmitted){
 
@@ -53,11 +48,19 @@ if ($isFormSubmitted){
     $form_email = $_POST['email'];
     $form_city = $_POST['city'];
     $form_state = $_POST['state'];
-    $form_address = $_POST['address'];
     $form_zip = $_POST['zip'];
     $form_phone = $_POST['phone'];
     $form_destination = $_POST['preferred-destination'];
-    $form_cruise_line = $_POST['preferred-cruise-line'];
+    $form_cruiseline = $_POST['preferred-cruiseline'];
+
+
+    // Make sure to convert destination and cruiseline to a null if it has not been selected
+
+    if ($form_destination === '') $form_destination = 'null'; 
+    if ($form_cruiseline === '') $form_cruiseline = 'null'; 
+
+
+    // Perform validation
 
     if (strlen($form_firstname) > 1) {
         $isFirstNameValid = true;
@@ -83,19 +86,21 @@ if ($isFormSubmitted){
         $isStateVaild = true;
     }
 
-    if (($form_cruise_line) !== '') {
-        $isPreferred_cruise_line = true;
-    }
+    
 
-    if (($form_destination) !== '') {
-        $isPreferred_destination = true;
-    }
 
+    // Hide the form if validation is successful
 
     if ($isFirstNameValid && $isLastNameValid && $isStateValid) {
         $showForm = false; // Hide the form!
     }
 
+    $sql = "SELECT * FROM `registration` WHERE email = '$form_email';";
+    $results = queryDatabase($sql);
+    if (mysqli_num_rows($results) > 0) {
+        echo "I'm sorry, there is already an entry with this e-mail.";
+        exit;
+    }
 
     
     // Insert the data into the database
@@ -103,9 +108,9 @@ if ($isFormSubmitted){
     $sql = "INSERT INTO `registration`
     (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`, 'cruiseline_id')
     VALUES 
-    ('$form_firstName','$form_lastName','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination', $form_preferred_cruise_line)";
+    ('$form_firstname','$form_lastname','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination', $form_cruiseline)";
 
-    echo $sql;
+   
 
     queryDatabase($sql);
 
@@ -114,4 +119,4 @@ if ($isFormSubmitted){
 
 $statesArray = getStates();
 $destinationsArray = getDestinations();
-$cruiseArray = getCruiseLine();
+$cruiselinesArray = getCruiseLines();
