@@ -1,10 +1,10 @@
 <?php
 
 // Include the global error handler
-require_once "includes/error_handler.php";
+require_once "error_handler.php";
 
 // Include the data layer
-require_once "includes/form_data.php";
+require_once "form_data.php";
 
 // Variables/flags
 $isFormSubmitted = $_SERVER['REQUEST_METHOD'] === 'POST';
@@ -106,9 +106,9 @@ if ($isFormSubmitted){
     // Insert the data into the database
     // INSERT INTO `registration`(`first_name`, `last_name`, `email`, `state`, `destination`) VALUES ('test1','Test2','test3','test4','test5')
     $sql = "INSERT INTO `registration`
-    (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`, 'cruiseline_id')
+    (`first_name`, `last_name`, `email`, `city`, `zip`, `phone`, `state_id`, `destination_id`, `cruiseline_id`)
     VALUES 
-    ('$form_firstname','$form_lastname','$form_email','$form_city','$form_zip','$form_phone','$form_state','$form_destination', $form_cruiseline)";
+    ('$form_firstname','$form_lastname','$form_email','$form_city','$form_zip','$form_phone',$form_state,$form_destination, $form_cruiseline)";
 
    
 

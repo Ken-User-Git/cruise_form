@@ -4,10 +4,11 @@
 require_once "../includes/data_layer.php";
 
 // Query the database to get a list of registrations
-$sql = "SELECT r.first_name, r.last_name, r.email, s.state_name, d.destination_name
+$sql = "SELECT r.first_name, r.last_name, r.email, s.state_name, d.destination_name, c.cruiseline_name
 FROM registration r
-INNER JOIN destination d ON r.destination_id = d.destination_id
-INNER JOIN state s ON r.state_id = s.state_id";
+LEFT JOIN destination d ON r.destination_id = d.destination_id
+LEFT JOIN state s ON r.state_id = s.state_id
+LEFT JOIN cruiseline c ON r.cruiseline_id = c.cruiseline_id";
 
 $results = queryDatabase($sql);
 
@@ -22,6 +23,7 @@ $results = queryDatabase($sql);
         <td>E-mail</td>
         <td>State</td>
         <td>Pref. Destination</td>
+        <td>Pref. Cruiseline</td>
     </tr>
 <?php
     while($row = $results->fetch_assoc()) { // Loop over the results from the query

@@ -20,7 +20,7 @@ function queryDatabase($sql) {
     $db = "csc257";
 
     // 1. Create a connection
-    $conn = new mysqli($serverName, $userName, $password ,$db, $port);
+    $conn = new mysqli($serverName, $userName, $password, $db, $port);
 
     // 2. Get the results and return
     $results = $conn->query($sql);
