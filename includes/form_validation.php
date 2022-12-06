@@ -70,14 +70,6 @@ if ($isFormSubmitted){
         $isLastNameValid = true;
     }
 
-    if (strlen($form_email) > 1) {
-        $isEmailValid = true;
-    }
-
-    if (strlen($form_zip) > 1) {
-        $isZipValid = true;
-    }
-
     if (strlen($form_phone) > 1) {
         $isPhoneValid = true;
     }
